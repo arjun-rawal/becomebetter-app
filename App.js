@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import React from "react";
+import {Pressable, StyleSheet} from 'react-native'
+// 1. import `NativeBaseProvider` component
+import { NativeBaseProvider, Text, Box, Button, ColorMode, Image, Center } from "native-base";
 export default function App() {
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NativeBaseProvider>
+      <Box flex={1} bg="white" >
+          
+          <Pressable  style={styles.motivation} onPress={()=>{console.log("hello")}}>
+          <Image position='absolute' size={280} zIndex={1} alt="fallback text"  source={require("./assets/istockphoto-1255203350-612x612.jpg")} />
+      </Pressable>
+        </Box>
+    </NativeBaseProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles= StyleSheet.create({
+  motivation:{
+    alignItems:'center',
+    position:'absolute',
+    paddingLeft: '100%',
+    paddingTop: '100%'
+  }
+})
