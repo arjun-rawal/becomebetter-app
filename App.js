@@ -16,7 +16,8 @@ import {
   IconButton,
   VStack,
 } from "native-base";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+
 
 export default function App() {
   const [screen, setScreen] = useState("Dashboard");
@@ -26,6 +27,9 @@ export default function App() {
       return <HomeScreen />;
     } else if (screen.screen == "Water") {
       return;
+    }
+    else if (screen.screen == "Motivation"){
+      return <MotivationScreen />
     }
   };
 
@@ -46,7 +50,44 @@ export default function App() {
       </Box>
     );
   };
+  function FetchQuote() {
+    const [quote,setQuote] = useState('');
+    const [author,setAuthor]= useState('');
+    const [imgSrc,setImgSrc]= useState('');
 
+    useEffect(()=>{
+        getQuote();
+       const intervalID = setInterval(()=>{
+        getQuote()
+       }, 24 * 60 * 60 * 1000);
+    return ()=>{
+        clearInterval(intervalID);
+    }
+    },[])
+    function getQuote() {
+        fetch('http://quotes.rest/qod.json?category=motivation')
+        .then(res=> res.json())
+        .then(data=>{
+            console.log(data);
+            setQuote(data.contents.quotes[0].quote);
+            setAuthor(data.contents.quotes[0].author);
+            setImgSrc(data.contents.quotes[0].background);
+        })
+    }
+return(
+    <>
+    <Text>{quote+"-"+author}</Text>
+    </>
+)
+}
+  const MotivationScreen = () =>{
+    
+      return(
+        <Box padding={4} style={{flex:1,display:'flex',justifyContent:'center',alignItems:'center'}}>
+        <FetchQuote />
+        </Box>
+      );
+  }
   const HomeScreen = () => {
     return (
       <ScrollView>
@@ -55,6 +96,7 @@ export default function App() {
             <Button
               _pressed={{ bg: "error.300" }}
               _text={styles.buttonLabels}
+              onPress={()=>{setScreen("Motivation")}}
               w="175"
               h="175"
               bg="error.400"
@@ -141,6 +183,7 @@ export default function App() {
 }
 const styles = StyleSheet.create({
   buttonLabels: {
+    
     color: "white",
     fontSize: 22,
     fontWeight: "bold",
