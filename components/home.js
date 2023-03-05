@@ -30,7 +30,7 @@ export default function HomeScreen({ navigation }) {
             rounded="lg"
             shadow={3}
             onPress={() => {
-              setScreen("Water");
+              navigation.navigate("Water");
             }}
           >
             Water

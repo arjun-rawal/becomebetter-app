@@ -1,7 +1,11 @@
 import React from "react";
 import { Button, HStack, Box } from "native-base";
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function Footer() {
+    const navigation = useNavigation();
+
   return (
     <Box
       style={{ position: "absolute", bottom: 0, width: "100%" }}
@@ -15,8 +19,8 @@ export default function Footer() {
           bg="blueGray.800"
           borderRadius={0}
           onPress={() => {
-            setScreen("Dashboard");
-          }}
+            navigation.navigate("Home");
+        }}
         >
           🏠
         </Button>
@@ -26,6 +30,7 @@ export default function Footer() {
           h="50"
           bg="blueGray.800"
           borderRadius={0}
+          onPress={()=>{navigation.navigate("Settings")}}
         >
           ⚙️
         </Button>
@@ -35,6 +40,7 @@ export default function Footer() {
           h="50"
           bg="blueGray.800"
           borderRadius={0}
+          onPress={()=>{navigation.navigate("Profile")}}
         >
           👤
         </Button>
