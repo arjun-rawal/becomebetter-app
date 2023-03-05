@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, StyleSheet, ScrollView } from "react-native";
+import { Pressable, StyleSheet, ScrollView, AsyncStorage } from "react-native";
 import {
   Box,
   Button,
@@ -19,6 +19,7 @@ import {
   Checkbox,
   Modal,
   Input,
+  useBreakpointValue,
 } from "native-base";
 import { useState, useEffect } from "react";
 
@@ -26,14 +27,14 @@ export default function App() {
   const [screen, setScreen] = useState("Dashboard");
   const [quote, setQuote] = useState("");
   const [quoteTags, setTags] = useState("athletics|change|education|famous-quotes|self-help")
+
   const DisplayScreen = (screen) => {
-    if (screen.screen == "Dashboard") {
-      return <HomeScreen />;
-    } else if (screen.screen == "Water") {
-      return;
-    } else if (screen.screen == "Motivation") {
-      return <MotivationScreen />;
+    switch (screen.screen){
+      case "Dashboard": return <HomeScreen />
+      case "Motivation": return <MotivationScreen /> 
+      case "Water": return <WaterScreen /> 
     }
+
   };
 
   const Footer = () => {
@@ -336,6 +337,16 @@ export default function App() {
       </ScrollView>
     );
   };
+
+  const WaterScreen =async() =>{
+    const target = AsyncStorage.getItem('waterTarget')
+    if (target==null){
+      console.log("Empty")
+    }
+    else{
+      console.log("h");
+    }
+  }
   return (
     <NativeBaseProvider>
       <DisplayScreen screen={screen} />
