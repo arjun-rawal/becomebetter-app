@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, ScrollView } from "react-native";
-import { Button, HStack, VStack } from "native-base";
+import { Button, HStack, Spinner, VStack } from "native-base";
 
 export default function HomeScreen({ navigation }) {
+  
   return (
     <ScrollView>
       <VStack paddingTop={12} space={4} alignItems="center">
