@@ -89,11 +89,9 @@ export default function WaterScreen() {
                 placeholder="If unsure, do half your body weight(lb)"
               />
               <FormControl.HelperText>
-                Must be atleast 6 characters.
+                Numbers only 
               </FormControl.HelperText>
-              <FormControl.ErrorMessage>
-                Atleast 6 characters are required.
-              </FormControl.ErrorMessage>
+
               <Button onPress={storeWaterTarget} marginTop={5}>Next</Button>
             </Stack>
           </FormControl>
