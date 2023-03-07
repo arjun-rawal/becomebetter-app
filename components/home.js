@@ -46,6 +46,9 @@ export default function HomeScreen({ navigation }) {
             bg="tertiary.200"
             rounded="lg"
             shadow={3}
+            onPress={()=>{
+              navigation.navigate("Breathe");
+            }}
           >
             Breathe
           </Button>
