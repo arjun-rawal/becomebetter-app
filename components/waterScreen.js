@@ -1,10 +1,17 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Box, Button, Input, KeyboardAvoidingView, Text } from "native-base";
+import {
+  Box,
+  Button,
+  Input,
+  KeyboardAvoidingView,
+  Text,
+  FormControl,
+  Stack,
+} from "native-base";
 import { useState } from "react";
 
 export default function WaterScreen() {
   const [waterTarget, setTarget] = useState("null");
-
   const getData = async () => {
     try {
       setTarget(await AsyncStorage.getItem("waterTarget"));
@@ -30,37 +37,71 @@ export default function WaterScreen() {
 
     console.log("Done.");
   };
-
+  
   getData();
 
-  return <>{waterTarget === null ? <WaterTargetInput /> : <Text>h</Text>}</>;
-}
+  const WaterTargetInput = () => {
+    const [waterTargetValue, setWaterTargetValue] = useState("");
+  
+    const handleChange = (text) => {
+      if (!isNaN(text) && !text.includes(".")) {
+        console.log(text);
+        setWaterTargetValue(text);
+      }
+    };
+  
+    const storeWaterTarget = async () =>{
+      
+        await AsyncStorage.setItem("waterTarget", waterTargetValue);
+        setTarget(waterTargetValue);
+  
+    }
+    return (
+      <Box
+        padding={4}
+        style={{
+          flex: 1,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <KeyboardAvoidingView
+          h={{
+            base: "200px",
+            lg: "auto",
+          }}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <Text fontSize={20} fontWeight="bold"></Text>
+          <FormControl isRequired>
+            <Stack mx="2">
+              <FormControl.Label
+                _text={{ fontSize: 20, fontWeight: "bold", color: "black" }}
+              >
+                Enter your daily water target(oz)
+              </FormControl.Label>
+              <Input
+                keyboardType="numeric"
+                size="lg"
+                value={waterTargetValue}
+                onChangeText={handleChange}
+                placeholder="If unsure, do half your body weight(lb)"
+              />
+              <FormControl.HelperText>
+                Must be atleast 6 characters.
+              </FormControl.HelperText>
+              <FormControl.ErrorMessage>
+                Atleast 6 characters are required.
+              </FormControl.ErrorMessage>
+              <Button onPress={storeWaterTarget} marginTop={5}>Next</Button>
+            </Stack>
+          </FormControl>
+        </KeyboardAvoidingView>
+      </Box>
+    );
+  };
+  return <>{waterTarget === null ? <WaterTargetInput /> : <Text>{waterTarget}</Text>}</>;
 
-const WaterTargetInput = () => {
-  return (
-    <Box
-      padding={4}
-      style={{
-        flex: 1,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <KeyboardAvoidingView h={{
-    base: "200px",
-    lg: "auto"
-  }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
-        <Text fontSize={20} fontWeight="bold">
-          Enter your daily water target(oz)
-        </Text>
-        <Input
-          variant="outline"
-          size="lg"
-          placeholder="If unsure, do half your body weight(lb)"
-        ></Input>
-        <Button marginTop={5}>Next</Button>
-      </KeyboardAvoidingView>
-    </Box>
-  );
-};
+
+}
