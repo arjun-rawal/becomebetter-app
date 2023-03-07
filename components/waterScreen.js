@@ -28,18 +28,10 @@ export default function WaterScreen() {
 
     console.log("Done.");
   };
-  clearAll = async () => {
-    try {
-      await AsyncStorage.clear();
-    } catch (e) {
-      // clear error
-    }
 
-    console.log("Done.");
-  };
   
   getData();
-
+  
   const WaterTargetInput = () => {
     const [waterTargetValue, setWaterTargetValue] = useState("");
   
