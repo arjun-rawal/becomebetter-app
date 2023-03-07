@@ -1,3 +1,1 @@
-export default function ProfileScreen(){
-
-}
+export default function ProfileScreen() {}

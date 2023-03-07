@@ -3,7 +3,6 @@ import { StyleSheet, ScrollView } from "react-native";
 import { Button, HStack, Spinner, VStack } from "native-base";
 
 export default function HomeScreen({ navigation }) {
-  
   return (
     <ScrollView>
       <VStack paddingTop={12} space={4} alignItems="center">

@@ -29,25 +29,22 @@ export default function WaterScreen() {
     console.log("Done.");
   };
 
-  
   getData();
-  
+
   const WaterTargetInput = () => {
     const [waterTargetValue, setWaterTargetValue] = useState("");
-  
+
     const handleChange = (text) => {
       if (!isNaN(text) && !text.includes(".")) {
         console.log(text);
         setWaterTargetValue(text);
       }
     };
-  
-    const storeWaterTarget = async () =>{
-      
-        await AsyncStorage.setItem("waterTarget", waterTargetValue);
-        setTarget(waterTargetValue);
-  
-    }
+
+    const storeWaterTarget = async () => {
+      await AsyncStorage.setItem("waterTarget", waterTargetValue);
+      setTarget(waterTargetValue);
+    };
     return (
       <Box
         padding={4}
@@ -80,18 +77,20 @@ export default function WaterScreen() {
                 onChangeText={handleChange}
                 placeholder="If unsure, do half your body weight(lb)"
               />
-              <FormControl.HelperText>
-                Numbers only 
-              </FormControl.HelperText>
+              <FormControl.HelperText>Numbers only</FormControl.HelperText>
 
-              <Button onPress={storeWaterTarget} marginTop={5}>Next</Button>
+              <Button onPress={storeWaterTarget} marginTop={5}>
+                Next
+              </Button>
             </Stack>
           </FormControl>
         </KeyboardAvoidingView>
       </Box>
     );
   };
-  return <>{waterTarget === null ? <WaterTargetInput /> : <Text>{waterTarget}</Text>}</>;
-
-
+  return (
+    <>
+      {waterTarget === null ? <WaterTargetInput /> : <Text>{waterTarget}</Text>}
+    </>
+  );
 }

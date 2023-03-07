@@ -22,7 +22,6 @@ export default function App() {
           <Stack.Screen name="Water" component={WaterScreen} />
           <Stack.Screen name="Settings" component={SettingsScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
-
         </Stack.Navigator>
         <Footer />
       </NavigationContainer>
