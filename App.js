@@ -1,7 +1,7 @@
 import React from "react";
 import { NativeBaseProvider } from "native-base";
 import { NavigationContainer } from "@react-navigation/native";
-
+import BreatheScreen from "./components/BreatheScreen";
 import HomeScreen from "./components/home";
 import Footer from "./components/footer";
 import MotivationScreen from "./components/motivationScreen";
@@ -22,6 +22,7 @@ export default function App() {
           <Stack.Screen name="Water" component={WaterScreen} />
           <Stack.Screen name="Settings" component={SettingsScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
+          <Stack.Screen name="Breathe" component={BreatheScreen} />
         </Stack.Navigator>
         <Footer />
       </NavigationContainer>
