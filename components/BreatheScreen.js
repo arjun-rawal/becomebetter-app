@@ -13,6 +13,7 @@ import boxImage from "../assets/breathingTechniques/box-breathing-technique.gif"
 import fourSevenEightImage from "../assets/breathingTechniques/foursevenfour.gif";
 import fingerImage from "../assets/breathingTechniques/finger.gif";
 import balloonImage from "../assets/breathingTechniques/balloon.gif";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 export default function BreatheScreen() {
   const [index, setIndex] = useState(0);
   const breathingTypes = [
@@ -25,7 +26,16 @@ export default function BreatheScreen() {
     balloonImage,
     "Balloon Breathing",
   ];
-
+  const readIndex = async()=>{
+    setIndex((await AsyncStorage.getItem("currentBreathingTechnique")));
+    if (index==null){
+      setIndex(0)
+    }
+  }
+  // readIndex();
+  const storeIndex = async() =>{
+    await AsyncStorage.setItem("currentBreathingTechnique", index.toString());
+  }
   return (
     <>
       <Box
@@ -53,6 +63,7 @@ export default function BreatheScreen() {
               size="lg"
               onPress={() => {
                 setIndex(index - 2);
+                // storeIndex();
               }}
             >
               Back
@@ -64,6 +75,7 @@ export default function BreatheScreen() {
               size="lg"
               onPress={() => {
                 setIndex(index + 2);
+                // storeIndex();
               }}
             >
               Next
