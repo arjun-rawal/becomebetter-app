@@ -26,16 +26,16 @@ export default function BreatheScreen() {
     balloonImage,
     "Balloon Breathing",
   ];
-  const readIndex = async()=>{
-    setIndex((await AsyncStorage.getItem("currentBreathingTechnique")));
-    if (index==null){
-      setIndex(0)
+  const readIndex = async () => {
+    setIndex(await AsyncStorage.getItem("currentBreathingTechnique"));
+    if (index == null) {
+      setIndex(0);
     }
-  }
+  };
   // readIndex();
-  const storeIndex = async() =>{
+  const storeIndex = async () => {
     await AsyncStorage.setItem("currentBreathingTechnique", index.toString());
-  }
+  };
   return (
     <>
       <Box
