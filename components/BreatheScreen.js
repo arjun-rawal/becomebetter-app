@@ -63,7 +63,6 @@ export default function BreatheScreen() {
               size="lg"
               onPress={() => {
                 setIndex(index - 2);
-                // storeIndex();
               }}
             >
               Back
@@ -75,7 +74,6 @@ export default function BreatheScreen() {
               size="lg"
               onPress={() => {
                 setIndex(index + 2);
-                // storeIndex();
               }}
             >
               Next
