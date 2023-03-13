@@ -46,7 +46,16 @@ export default function App() {
           }}/>
           <Stack.Screen name="Settings" component={SettingsScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
-          <Stack.Screen name="Breathe" component={BreatheScreen} />
+          <Stack.Screen name="Breathe" component={BreatheScreen} options={{
+            headerStyle:{
+              backgroundColor: "#a7f3d0" 
+            },
+            headerTitleStyle:{
+              fontWeight:'bold'
+            },
+            headerBackVisible: false
+          
+          }}/>
         </Stack.Navigator>
         <Footer />
       </NavigationContainer>

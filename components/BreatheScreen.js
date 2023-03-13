@@ -45,6 +45,7 @@ export default function BreatheScreen() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          backgroundColor: "#a5f3fc"
         }}
       >
         <Center _text={{ fontSize: 21, fontWeight: "bold" }}>
