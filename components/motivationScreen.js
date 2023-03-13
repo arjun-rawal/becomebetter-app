@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Button,
   HStack,
@@ -13,25 +13,55 @@ import {
 import { useState } from "react";
 
 export default function MotivationScreen() {
-  const [quote, setQuote] = useState(
-    '"They can do all because they think they can" - Virgil'
-  ); //FIX THIS
   const [quoteTags, setTags] = useState(
     "athletics|change|education|famous-quotes|self-help"
   );
-
-  async function FetchQuote() {
-    try {
-      const quoteObject = await fetch(
-        "https://api.quotable.io/random?tags=" + quoteTags
-      );
-      const json = await quoteObject.json();
-      console.log(json);
-      setQuote('"' + json.content + '"\n -' + json.author);
-    } catch (error) {
-      console.log(error.message);
+  var link = "https://api.quotable.io/random?tags=athletics|change" //+ quoteTags
+  const [quote, setQuote] = useState(); //FIX THIS
+  useEffect(() => {
+    async function FetchQuote() {
+      try {
+        const quoteObject = await fetch(
+          link
+        );
+        const json = await quoteObject.json();
+        console.log(json);
+        setQuote('"' + json.content + '"\n -' + json.author);
+      } catch (error) {
+        console.log(error.message);
+      }
     }
+    FetchQuote();
+  }, []);
+
+  return quote && <Child currentQuote={quote} />
+}
+  const Child = ({currentQuote}) => {
+  return( 
+    <>
+    <Box
+      padding={4}
+      style={{
+        flex: 1,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor:'beige' 
+      }}
+      _text={{
+        fontSize: 20,
+        fontWeight: "bold",
+        fontStyle: "italic",
+      }}
+    >
+      {currentQuote}
+      <Button onPress={()=>{}}>Next Quote</Button>
+      <MotivationModal />
+    </Box>
+  </>
+  );
   }
+ 
   const MotivationModal = () => {
     const [showModal, setShowModal] = useState(false);
     var tag = "";
@@ -171,27 +201,4 @@ export default function MotivationScreen() {
     );
   };
 
-  return (
-    <>
-      <Box
-        padding={4}
-        style={{
-          flex: 1,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor:'beige' 
-        }}
-        _text={{
-          fontSize: 20,
-          fontWeight: "bold",
-          fontStyle: "italic",
-        }}
-      >
-        {quote}
-        <Button onPress={FetchQuote}>Next Quote</Button>
-        <MotivationModal />
-      </Box>
-    </>
-  );
-}
+
