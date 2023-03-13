@@ -23,17 +23,26 @@ export default function App() {
             },
             headerTitleStyle:{
               fontWeight:'bold'
-            }
+            },
+            headerBackVisible: false
           }} />
           <Stack.Screen name="Motivation" component={MotivationScreen} options={{
             headerStyle:{
               backgroundColor: "#f87171" //error.400
-            }
+            },
+            headerTitleStyle:{
+              fontWeight:'bold'
+            },
+            headerBackVisible: false
           }}/>
           <Stack.Screen name="Water" component={WaterScreen} options={{
             headerStyle:{
               backgroundColor: "#7dd3fc" 
-            }
+            },
+            headerTitleStyle:{
+              fontWeight:'bold'
+            },
+            headerBackVisible: false
           }}/>
           <Stack.Screen name="Settings" component={SettingsScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
