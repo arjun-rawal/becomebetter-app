@@ -17,8 +17,19 @@ export default function App() {
     <NativeBaseProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Motivation" component={MotivationScreen} />
+          <Stack.Screen name="Home" component={HomeScreen} options={{
+            headerStyle: {
+              backgroundColor: 'beige'
+            },
+            headerTitleStyle:{
+              fontWeight:'bold'
+            }
+          }} />
+          <Stack.Screen name="Motivation" component={MotivationScreen} options={{
+            headerStyle:{
+              backgroundColor: "#f87171" //error.400
+            }
+          }}/>
           <Stack.Screen name="Water" component={WaterScreen} />
           <Stack.Screen name="Settings" component={SettingsScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />

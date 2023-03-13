@@ -8,6 +8,7 @@ import {
   FormControl,
   Modal,
   Checkbox,
+  View,
 } from "native-base";
 import { useState } from "react";
 
@@ -179,6 +180,7 @@ export default function MotivationScreen() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          backgroundColor:'#a5f3fc' //error.400
         }}
         _text={{
           fontSize: 20,

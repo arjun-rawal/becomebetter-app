@@ -9,6 +9,7 @@ import {
   Stack,
 } from "native-base";
 import { useState } from "react";
+import { View } from "react-native";
 
 export default function WaterScreen() {
   const [waterTarget, setTarget] = useState("null");
@@ -53,15 +54,10 @@ export default function WaterScreen() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          backgroundColor:'#a5f3fc'
         }}
       >
-        <KeyboardAvoidingView
-          h={{
-            base: "200px",
-            lg: "auto",
-          }}
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-        >
+
           <Text fontSize={20} fontWeight="bold"></Text>
           <FormControl isRequired>
             <Stack mx="2">
@@ -84,7 +80,7 @@ export default function WaterScreen() {
               </Button>
             </Stack>
           </FormControl>
-        </KeyboardAvoidingView>
+
       </Box>
     );
   };

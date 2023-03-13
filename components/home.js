@@ -4,7 +4,7 @@ import { Button, HStack, Spinner, VStack } from "native-base";
 
 export default function HomeScreen({ navigation }) {
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor:'#a5f3fc'}}>
       <VStack paddingTop={12} space={4} alignItems="center">
         <HStack space={3} justifyContent="center">
           <Button
@@ -15,7 +15,7 @@ export default function HomeScreen({ navigation }) {
             }}
             w="175"
             h="175"
-            bg="error.400"
+            bg="error.400" //#f87171
             rounded="lg"
             shadow={3}
           >
