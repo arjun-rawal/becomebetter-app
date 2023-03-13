@@ -180,7 +180,7 @@ export default function MotivationScreen() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor:'#a5f3fc' //error.400
+          backgroundColor:'beige' 
         }}
         _text={{
           fontSize: 20,
