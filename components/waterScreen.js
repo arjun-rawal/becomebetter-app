@@ -54,33 +54,34 @@ export default function WaterScreen() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor:'#a5f3fc'
+          backgroundColor: "#a5f3fc",
         }}
       >
+        <Text fontSize={20} fontWeight="bold"></Text>
+        <FormControl isRequired>
+          <Stack mx="2">
+            <FormControl.Label
+              _text={{ fontSize: 20, fontWeight: "bold", color: "black" }}
+            >
+              Enter your daily water target(oz)
+            </FormControl.Label>
+            <Input
+              keyboardType="numeric"
+              size="lg"
+              value={waterTargetValue}
+              onChangeText={handleChange}
+              placeholder="If unsure, do half your body weight(lb)"
+              borderColor="muted.600"
+              borderWidth={1.5}
+              borderRadius="md"
+            />
+            <FormControl.HelperText>Numbers only</FormControl.HelperText>
 
-          <Text fontSize={20} fontWeight="bold"></Text>
-          <FormControl isRequired>
-            <Stack mx="2">
-              <FormControl.Label
-                _text={{ fontSize: 20, fontWeight: "bold", color: "black" }}
-              >
-                Enter your daily water target(oz)
-              </FormControl.Label>
-              <Input
-                keyboardType="numeric"
-                size="lg"
-                value={waterTargetValue}
-                onChangeText={handleChange}
-                placeholder="If unsure, do half your body weight(lb)"
-              />
-              <FormControl.HelperText>Numbers only</FormControl.HelperText>
-
-              <Button onPress={storeWaterTarget} marginTop={5}>
-                Next
-              </Button>
-            </Stack>
-          </FormControl>
-
+            <Button onPress={storeWaterTarget} marginTop={5} bg="teal.600">
+              Next
+            </Button>
+          </Stack>
+        </FormControl>
       </Box>
     );
   };
