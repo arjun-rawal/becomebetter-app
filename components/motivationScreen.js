@@ -18,25 +18,26 @@ export default function MotivationScreen() {
   );
   var link = "https://api.quotable.io/random?tags=athletics|change" //+ quoteTags
   const [quote, setQuote] = useState(); //FIX THIS
-  useEffect(() => {
-    async function FetchQuote() {
-      try {
-        const quoteObject = await fetch(
-          link
-        );
-        const json = await quoteObject.json();
-        console.log(json);
-        setQuote('"' + json.content + '"\n -' + json.author);
-      } catch (error) {
-        console.log(error.message);
-      }
+  async function FetchQuote() {
+    try {
+      const quoteObject = await fetch(
+        link
+      );
+      const json = await quoteObject.json();
+      console.log(json);
+      setQuote('"' + json.content + '"\n -' + json.author);
+    } catch (error) {
+      console.log(error.message);
     }
+  }
+  useEffect(() => {
+
     FetchQuote();
   }, []);
 
-  return quote && <Child currentQuote={quote} />
+  return quote && <Child currentQuote={quote} quoteFunction = {FetchQuote}/>
 }
-  const Child = ({currentQuote}) => {
+  const Child = ({currentQuote,quoteFunction}) => {
   return( 
     <>
     <Box
@@ -55,7 +56,7 @@ export default function MotivationScreen() {
       }}
     >
       {currentQuote}
-      <Button onPress={()=>{}}>Next Quote</Button>
+      <Button onPress={()=>{quoteFunction()}}>Next Quote</Button>
       <MotivationModal />
     </Box>
   </>
