@@ -77,7 +77,7 @@ export default function WaterScreen() {
             />
             <FormControl.HelperText>Numbers only</FormControl.HelperText>
 
-            <Button onPress={storeWaterTarget} marginTop={5} bg="teal.600">
+            <Button onPress={storeWaterTarget} marginTop={5} bg="primary.800">
               Next
             </Button>
           </Stack>

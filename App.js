@@ -30,7 +30,11 @@ export default function App() {
               backgroundColor: "#f87171" //error.400
             }
           }}/>
-          <Stack.Screen name="Water" component={WaterScreen} />
+          <Stack.Screen name="Water" component={WaterScreen} options={{
+            headerStyle:{
+              backgroundColor: "#7dd3fc" 
+            }
+          }}/>
           <Stack.Screen name="Settings" component={SettingsScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
           <Stack.Screen name="Breathe" component={BreatheScreen} />
