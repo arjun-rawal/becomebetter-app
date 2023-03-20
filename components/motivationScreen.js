@@ -14,19 +14,24 @@ import { useState } from "react";
 
 export default function MotivationScreen() {
   const [quoteTags, setTags] = useState(
-    "athletics|education|famous|self-help|"
+    "success"
   );
-  var link = "https://api.quotable.io/random?tags=" + quoteTags
+  var link = "https://api.api-ninjas.com/v1/quotes?category="  + quoteTags
   const [quote, setQuote] = useState(); //FIX THIS
   async function FetchQuote() {
     try {
       const quoteObject = await fetch(
         link
+      ,{
+        headers: {
+          "X-Api-Key": "NE9j9kpzz9wwNpgxBhT5XA==NYRboJ18ccCs5Ecq"
+        }
+      }
       )
       console.log(link)
       const json = await quoteObject.json();
       console.log(json);
-      setQuote('"' + json.content + '"\n -' + json.author);
+      setQuote('"' + json[0].quote + '"\n -' + json[0].author);
     } catch (error) {
       console.log(error.message);
     }
@@ -74,16 +79,11 @@ const MotivationModal = ({setTags}) => {
                   mt="2"
                   colorScheme="blue"
                   defaultValue={[
-                    "athletics",
-                    "education",
-                    "famous",
-                    "self-help",
+                    "success"
                   ]}
-                  accessibilityLabel="choose multiple items"
+                  accessibilityLabel="choose one item"
                   onChange={(values) => {
-                    for (var i = 0; i < values.length; i++) {
-                      tag += values[i] + "|";
-                    }
+                    tag = values[0];
                     console.log(tag);
                     //TODO async storage stored values
                   }}
@@ -91,8 +91,17 @@ const MotivationModal = ({setTags}) => {
                 >
                   <HStack space={3} justifyContent="center">
                     <VStack space={3} justifyContent="center">
-                      <Checkbox value="athletics" my="1">
-                        Athletics
+                      <Checkbox value="amazing" my="1">
+                        Amazing
+                      </Checkbox>
+                      <Checkbox value="anger" my="1">
+                        Anger
+                      </Checkbox>
+                      <Checkbox value="art" my="1">
+                        Art
+                      </Checkbox>
+                      <Checkbox value="attitude" my="1">
+                        Attitude
                       </Checkbox>
                       <Checkbox value="business" my="1">
                         Business
@@ -100,51 +109,48 @@ const MotivationModal = ({setTags}) => {
                       <Checkbox value="change" my="1">
                         Change
                       </Checkbox>
-                      <Checkbox value="character" my="1">
-                        Character
-                      </Checkbox>
-                      <Checkbox value="competition" my="1">
-                        Competition
-                      </Checkbox>
                       <Checkbox value="courage" my="1">
                         Courage
+                      </Checkbox>
+                      <Checkbox value="death" my="1">
+                        Death
+                      </Checkbox>
+                      <Checkbox value="success" my="1">
+                        Success
                       </Checkbox>
                       <Checkbox value="education" my="1">
                         Education
                       </Checkbox>
+                    </VStack>
+                    <VStack space={3} justifyContent="center">
+                      <Checkbox value="environmental" my="1">
+                        Environmental
+                      </Checkbox>
+                      <Checkbox value="equality" my="1">
+                        Equality
+                      </Checkbox>
                       <Checkbox value="faith" my="1">
                         Faith
                       </Checkbox>
-
-                      <Checkbox value="family" my="1">
-                        Family
-                      </Checkbox>
-                    </VStack>
-                    <VStack space={3} justifyContent="center">
                       <Checkbox value="famous" my="1">
                         Famous
                       </Checkbox>
-                      <Checkbox value="virtue" my="1">
-                        Virtue
+                      <Checkbox value="happiness" my="1">
+                        Happiness
                       </Checkbox>
-                      <Checkbox value="film" my="1">
-                        Film
+                      <Checkbox value="humor" my="1">
+                        Humor
                       </Checkbox>
-                      <Checkbox value="freedom" my="1">
-                        Freedom
+                      <Checkbox value="inspirational" my="1">
+                        Inspirational
                       </Checkbox>
-                      <Checkbox value="friendship" my="1">
-                        Friendship
+                      <Checkbox value="leadership" my="1">
+                        Leadership
                       </Checkbox>
-                      <Checkbox value="future" my="1">
-                        Future
+                      <Checkbox value="money" my="1">
+                        Money
                       </Checkbox>
-                      <Checkbox value="character" my="1">
-                        Character
-                      </Checkbox>
-                      <Checkbox value="self-help" my="1">
-                        Self-help
-                      </Checkbox>
+
                     </VStack>
                   </HStack>
                 </Checkbox.Group>
@@ -165,6 +171,7 @@ const MotivationModal = ({setTags}) => {
                   onPress={() => {
                     setShowModal(false);
                     setTags(tag);
+                    quoteFunction();
                   }}
                 >
                   Save
